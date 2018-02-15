@@ -32,7 +32,7 @@ int kataFunc(const string & inputString) {
 
 
 TEST_CASE("Testing that the function returns 0 for and empty string") {
-	REQUIRE(kataFunc("") == 0);
+	REQUIRE(kataFunc(" ") == 0);
 }
 
 TEST_CASE("A single number returns its value") {
@@ -48,4 +48,13 @@ TEST_CASE("Two numbers comma delimited returns the sum") {
 	REQUIRE(kataFunc("1, 2") == 3);
 	REQUIRE(kataFunc("1000, 1300") == 2300);
 	REQUIRE(kataFunc("0, -1") == -1);
-}	
+
+}
+
+TEST_CASE("Two numbers new line delimited returns the sum") {
+	REQUIRE(kataFunc("1 \n1") == 2);
+	REQUIRE(kataFunc("1\n2") == 3);
+	REQUIRE(kataFunc("1000\n1300") == 2300);
+	REQUIRE(kataFunc("0\n-1") == -1);
+}
+
