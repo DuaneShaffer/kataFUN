@@ -45,4 +45,7 @@ TEST_CASE("A single number returns its value") {
 
 TEST_CASE("Two numbers comma delimited returns the sum") {
 	REQUIRE(kataFunc("1, 1") == 2);
-}
+	REQUIRE(kataFunc("1, 2") == 3);
+	REQUIRE(kataFunc("1000, 1300") == 2300);
+	REQUIRE(kataFunc("0, -1") == -1);
+}	
