@@ -11,11 +11,12 @@ using std::endl;
 
 int kataFunc(const string & inputString) {
 	char delim = ',';
-
+	istringstream inputStream(inputString);
 	if (inputString[0] == '/' && inputString[1] == '/') {
 		delim = inputString[2];
+		cout << "Detected a new delim: " << delim << endl;
+		inputStream.seekg(3);
 	}
-	istringstream inputStream(inputString);
 	int numberToReturn = 0;
 	int temp = 0;
 	
