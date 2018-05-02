@@ -9,7 +9,6 @@ using std::istringstream;
 using std::cout;
 using std::endl;
 
-
 int kataFunc(const string & inputString) {
 
 	istringstream inputStream(inputString);
@@ -17,6 +16,9 @@ int kataFunc(const string & inputString) {
 	int temp = 0;
 	
 	while (inputStream >> temp) {
+		if (temp < 0) {
+			throw "A negative number was given";
+		}
 		numberToReturn += temp;
 		inputStream.ignore(1);
 	}
