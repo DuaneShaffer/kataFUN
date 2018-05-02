@@ -10,16 +10,20 @@ using std::cout;
 using std::endl;
 
 int kataFunc(const string & inputString) {
+	char delim = ',';
 
+	if (inputString[0] == '/' && inputString[1] == '/') {
+		delim = inputString[2];
+	}
 	istringstream inputStream(inputString);
 	int numberToReturn = 0;
 	int temp = 0;
 	
+
 	while (inputStream >> temp) {
 		if (temp < 0) {
 			throw "A negative number was given";
-		}
-		else if (temp > 1000) {
+		} else if (temp > 1000) {
 			continue;
 		}
 		numberToReturn += temp;
@@ -75,4 +79,10 @@ TEST_CASE("Numbers greater than 1000 are ignored") {
 	REQUIRE(kataFunc("1000\n1300\n1") == 1001);
 	REQUIRE(kataFunc("1000, 1300") == 1000);
 	REQUIRE(kataFunc("1000000") == 0);
+}
+
+TEST_CASE("A single char delimiter can be defined on the first line") {
+	REQUIRE(kataFunc("//# 999#1") == 1000);
+	REQUIRE(kataFunc("//#999#1") == 1000);
+	REQUIRE(kataFunc("//# 10, 10\n 10 # 10") == 40);
 }
