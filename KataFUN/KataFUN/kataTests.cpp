@@ -64,3 +64,11 @@ TEST_CASE("Three numbers new line delimited returns the sum") {
 	REQUIRE(kataFunc("1000\n1300\n1") == 2301);
 	REQUIRE(kataFunc("0\n-1, 1") == 0);
 }
+
+TEST_CASE("Negative Numbers throw an exception") {
+	REQUIRE_THROWS(kataFunc("1,1, -1"));
+	REQUIRE_THROWS(kataFunc("-11,1, -1"));
+	REQUIRE_THROWS(kataFunc("11,-11, 1"));
+	REQUIRE_THROWS(kataFunc("-11,-1, -1"));
+
+}
