@@ -19,6 +19,9 @@ int kataFunc(const string & inputString) {
 		if (temp < 0) {
 			throw "A negative number was given";
 		}
+		else if (temp > 1000) {
+			continue;
+		}
 		numberToReturn += temp;
 		inputStream.ignore(1);
 	}
@@ -41,29 +44,23 @@ TEST_CASE("A single number returns its value") {
 	REQUIRE(kataFunc("1") == 1);
 	REQUIRE(kataFunc("0") == 0);
 	REQUIRE(kataFunc("100") == 100);
-	REQUIRE(kataFunc("1000000") == 1000000);
-	REQUIRE(kataFunc("1000001") == 1000001);
 }
 
 TEST_CASE("Two numbers comma delimited returns the sum") {
 	REQUIRE(kataFunc("1, 1") == 2);
 	REQUIRE(kataFunc("1, 2") == 3);
-	REQUIRE(kataFunc("1000, 1300") == 2300);
 	REQUIRE(kataFunc("0, 1") == 1);
-
 }
 
 TEST_CASE("Two numbers new line delimited returns the sum") {
 	REQUIRE(kataFunc("1 \n1") == 2);
 	REQUIRE(kataFunc("1\n2") == 3);
-	REQUIRE(kataFunc("1000\n1300") == 2300);
 	REQUIRE(kataFunc("0\n1") == 1);
 }
 
 TEST_CASE("Three numbers new line delimited returns the sum") {
 	REQUIRE(kataFunc("1 \n1, 1") == 3);
 	REQUIRE(kataFunc("1\n2, 1") == 4);
-	REQUIRE(kataFunc("1000\n1300\n1") == 2301);
 	REQUIRE(kataFunc("0\n1, 1") == 2);
 }
 
@@ -76,6 +73,6 @@ TEST_CASE("Negative Numbers throw an exception") {
 
 TEST_CASE("Numbers greater than 1000 are ignored") {
 	REQUIRE(kataFunc("1000\n1300\n1") == 1001);
-	REQUIRE(kataFunc("1000, 1300") == 0);
+	REQUIRE(kataFunc("1000, 1300") == 1000);
 	REQUIRE(kataFunc("1000000") == 0);
 }
