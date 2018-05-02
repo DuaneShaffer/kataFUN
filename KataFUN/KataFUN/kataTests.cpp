@@ -14,7 +14,6 @@ int kataFunc(const string & inputString) {
 	istringstream inputStream(inputString);
 	if (inputString[0] == '/' && inputString[1] == '/') {
 		delim = inputString[2];
-		cout << "Detected a new delim: " << delim << endl;
 		inputStream.seekg(3);
 	}
 	int numberToReturn = 0;
@@ -85,5 +84,5 @@ TEST_CASE("Numbers greater than 1000 are ignored") {
 TEST_CASE("A single char delimiter can be defined on the first line") {
 	REQUIRE(kataFunc("//# 999#1") == 1000);
 	REQUIRE(kataFunc("//#999#1") == 1000);
-	REQUIRE(kataFunc("//# 10, 10\n 10 # 10") == 40);
+	REQUIRE(kataFunc("//# 10, 10\n 10# 10") == 40);
 }
