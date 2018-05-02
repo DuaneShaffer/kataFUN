@@ -72,5 +72,10 @@ TEST_CASE("Negative Numbers throw an exception") {
 	REQUIRE_THROWS(kataFunc("-11,1, -1"));
 	REQUIRE_THROWS(kataFunc("11,-11, 1"));
 	REQUIRE_THROWS(kataFunc("-11,-1, -1"));
+}
 
+TEST_CASE("Numbers greater than 1000 are ignored") {
+	REQUIRE(kataFunc("1000\n1300\n1") == 1001);
+	REQUIRE(kataFunc("1000, 1300") == 0);
+	REQUIRE(kataFunc("1000000") == 0);
 }
